@@ -1,11 +1,16 @@
 package com.usage.domain;
 
-import lombok.Getter;
+import lombok.*;
 
+import java.time.LocalDate;
+
+@EqualsAndHashCode(callSuper = true)
 @Getter
 public class Depense extends Usage{
 
-    Montant getMontant() {
-       return this.montant.negate();
+
+    @Builder
+    public Depense(String label, Montant montant, LocalDate dateUsage, boolean effectue) {
+        super(label, montant, dateUsage, effectue);
     }
 }

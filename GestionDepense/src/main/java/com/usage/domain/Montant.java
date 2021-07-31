@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Value
 @AllArgsConstructor
 public class Montant {
-    private BigDecimal value;
+    BigDecimal value;
     static final Montant MONTANT_ZERO = new Montant(BigDecimal.ZERO);
 
     Montant addMontant(Montant montant) {
