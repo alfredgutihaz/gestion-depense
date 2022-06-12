@@ -19,26 +19,11 @@ public class Entrees {
         this.entrees.add(entree);
     }
 
-    Montant getTotalEntreePrevisionnelMensuelle(String mois, int annee) {
-        return this.entrees.stream()
-                .filter(entree -> mois.compareToIgnoreCase(entree.getDateUsage().getMonth().name()) == 0 &&
-                        entree.getDateUsage().getYear() == annee)
-                .map(Usage::getMontant)
-                .reduce(MONTANT_ZERO, Montant::addMontant);
-    }
-
     Montant getTotalEntreeEffectueeMensuelle(String mois, int annee) {
         return this.entrees.stream()
                 .filter(entree -> mois.compareToIgnoreCase(entree.getDateUsage().getMonth().name()) == 0 &&
                         entree.getDateUsage().getYear() == annee &&
                         entree.isEffectue())
-                .map(Usage::getMontant)
-                .reduce(MONTANT_ZERO, Montant::addMontant);
-    }
-
-    Montant getTotalDepensePrevisionnelAnnuelle(int annee) {
-        return this.entrees.stream()
-                .filter(entree -> entree.getDateUsage().getYear() == annee)
                 .map(Usage::getMontant)
                 .reduce(MONTANT_ZERO, Montant::addMontant);
     }

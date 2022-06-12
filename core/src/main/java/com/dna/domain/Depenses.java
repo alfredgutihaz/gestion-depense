@@ -21,26 +21,11 @@ public class Depenses {
     }
 
 
-    Montant getTotalDepensePrevisionnelleMensuelle(String mois, int annee) {
-        return this.depenses.stream()
-                .filter(depense -> mois.compareToIgnoreCase(depense.getDateUsage().getMonth().name()) == 0 &&
-                        depense.getDateUsage().getYear() == annee)
-                .map(Usage::getMontant)
-                .reduce(MONTANT_ZERO, Montant::addMontant);
-    }
-
     Montant getTotalDepenseEffectueeMensuelle(String mois, int annee) {
         return this.depenses.stream()
                 .filter(depense -> mois.compareToIgnoreCase(depense.getDateUsage().getMonth().name()) == 0 &&
                         depense.getDateUsage().getYear() == annee &&
                         depense.isEffectue())
-                .map(Usage::getMontant)
-                .reduce(MONTANT_ZERO, Montant::addMontant);
-    }
-
-    Montant getTotalDepensePrevisionnelleAnnuelle(int annee) {
-        return this.depenses.stream()
-                .filter(depense -> depense.getDateUsage().getYear() == annee)
                 .map(Usage::getMontant)
                 .reduce(MONTANT_ZERO, Montant::addMontant);
     }
